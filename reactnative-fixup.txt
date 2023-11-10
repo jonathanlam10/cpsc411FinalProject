@@ -1,0 +1,105 @@
+INFO: 
+*******
+This script MAY help you. You *should* have run "npx react-native doctor"
+and fixed the issues first. This may help you with issues there if you can't figure out why doctor is failing.
+
+BUT DO NOT try to run-android without BOTH "doctor" and this script reporting success.
+
+Note that "WARN:" does not mean "Error", it means "be sure this is correct."
+
+All output from this script will be logged to reactnative-fixup.txt
+***********
+
+
+INFO: Script is current version. [643]
+INFO: Found npm. [662]
+INFO: JAVA_HOME is set to C:\Program Files\Java\jdk-20 [677]
+INFO: JAVA_HOME points to an existing directory. [681]
+INFO: java is in your path. [691]
+INFO: Detected version "20.0.2" of Java. [714]
+INFO: Java version is correct. [718]
+INFO: java executable location matches up with JAVA_HOME. [735]
+INFO: Environment var(s) point to an Android SDK location C:\Users\lamjo\AppData\Local\Android\Sdk. [752]
+INFO: Android SDK appears to exist. [756]
+FATAL: Ensure that C:\Users\lamjo\AppData\Local\Android\Sdk\platform-tools is at the top of your SYSTEM path. [780]
+FATAL: Ensure that C:\Users\lamjo\AppData\Local\Android\Sdk\tools is at the top of your SYSTEM path. [787]
+INFO: (homebrew is not required on Windows) [801]
+FATAL: This project is NOT under git management (!) [826]
+INFO: do "git init", "git add ." and "git commit -m'Initial commit'" [827]
+INFO: We are in an NPM project. [833]
+INFO: We are really in a React-native project. [841]
+INFO: Confirmed: this is a CLI project. [852]
+INFO: Confirmed: this is not an expo rebuild/exported project. [863]
+INFO: (Cocoapods is not required on Windows.) [871]
+INFO: (xcode-select is not required on Windows.) [886]
+INFO: (Watchman is not required on Windows.) [904]
+INFO: (ios-deploy is not required on Windows.) [919]
+INFO: Found adb. [934]
+INFO: keytool is in path. [945]
+INFO: Found emulator. [956]
+INFO: bundletool destination folder of C:\Users\lamjo\Desktop\Homework\1 Current Semester\CPSC 411\bundletool-all-1.15.5.jar exists. [970]
+FATAL: Current version of bundletool.jar does not exist. Please specify the correct path to it. [976]
+INFO: The current (known) version is bundletool-all-1.15.5.jar [977]
+INFO: Download it from https://github.com/google/bundletool [978]
+INFO: And copy it to C:\Users\lamjo\Desktop\Homework\1 Current Semester\CPSC 411\bundletool-all-1.15.5.jar [979]
+INFO: Checking [newest published] npm package versions... [984]
+WARN: Expecting version ^6.6.4 of @react-navigation/drawer but found ^6.6.6 [992]
+WARN: Expecting version ^6.1.8 of @react-navigation/native but found ^6.1.9 [992]
+WARN: Expecting version ^6.9.14 of @react-navigation/native-stack but found ^6.9.17 [992]
+WARN: Expecting version ^6.3.18 of @react-navigation/stack but found ^6.3.20 [992]
+WARN: Expecting version ^2.13.2 of react-native-gesture-handler but found ^2.13.4 [992]
+WARN: Expecting version ^4.7.2 of react-native-safe-area-context but found ^4.7.4 [992]
+WARN: Expecting version ^3.25.0 of react-native-screens but found ^3.27.0 [992]
+INFO: (Tell BJM or write an issue against this script on GitHub) [999]
+INFO: ...Done checking npm package versions. [1001]
+INFO: Command-line tools are in path. [1007]
+INFO: Correct NDK is installed. [1015]
+INFO: Android SDK build-tools version 30.0.3 exists. [1027]
+INFO: Android SDK build-tools version 33.0.0 exists. [1027]
+INFO: Android SDK build-tools version 34.0.0 exists. [1027]
+INFO: (All build-tools versions exist) [1035]
+INFO: (JAVA_VERSION is not needed for Windows) [1045]
+INFO: Skipping add_kotlin_version_to_build_gradle ('modification' filtered out; previous test failure) [1330]
+INFO: Skipping add_signing_config_to_app_build_gradle ('modification' filtered out; previous test failure) [1330]
+INFO: Skipping add_keys_to_gradle_properties ('modification' filtered out; previous test failure) [1330]
+INFO: Skipping modify_gradle_properties ('modification' filtered out; previous test failure) [1330]
+INFO: Skipping modify_gradle_wrapper_distribution_url ('modification' filtered out; previous test failure) [1330]
+INFO: Skipping add_gradle_java_home ('modification' filtered out; previous test failure) [1330]
+INFO: Skipping add_universal_json_file ('modification' filtered out; previous test failure) [1330]
+INFO: Skipping remove_tsx_and_create_app_js ('modification' filtered out; previous test failure) [1330]
+INFO: Skipping modify_package_json_dependencies ('modification' filtered out; previous test failure) [1330]
+INFO: Skipping create_assets_config ('modification' filtered out; previous test failure) [1330]
+INFO: Skipping create_keystore ('modification' filtered out; previous test failure) [1330]
+INFO: Skipping create_prettierrc ('modification' filtered out; previous test failure) [1330]
+INFO: Be sure to:
+
+
+$ npm install
+$ npx react-native-asset
+
+[Then...]
+*sigh*
+[to run on simulator or connected device]
+
+$ npx react-native run-android
+
+[to build an APK]
+
+$ npx react-native-asset
+
+$ cd android && .\gradlew build && .\gradlew bundleRelease
+$ java -jar "C:\Users\lamjo\Desktop\Homework\1 Current Semester\CPSC 411\bundletool-all-1.15.5.jarbundletool-all-1.15.5.jar" build-apks --bundle=app\build\outputs\bundle\release\app-release.aab --output=app\build\outputs\apk\release\app-release.apks --mode=universal --ks=..\android/app/my-release-key.jks --ks-pass=pass:12345678 --ks-key-alias=my-key-alias --key-pass=pass:12345678
+
+$ java -jar "C:\Users\lamjo\Desktop\Homework\1 Current Semester\CPSC 411\bundletool-all-1.15.5.jarbundletool-all-1.15.5.jar" extract-apks --apks=app\build\outputs\apk\release\app-release.apks --output-dir=app\build\outputs\apk\release\ --device-spec=..\android\universal.json
+
+[to build on Mac for IOS]
+
+*Before* your first build (or after you install a new NPM package) you must:
+
+$ sudo gem update cocoapods --pre
+$ npx pod-install
+$ cd ios && pod update && cd ..
+
+
+
+*** (1.3.1) Message type counts: 4 fatal, 7 warn, 0 error, 51 info
