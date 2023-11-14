@@ -12,7 +12,7 @@ import sys
 
 script_url = 'https://raw.githubusercontent.com/bjmckenz/rn-cli-fixup/main/reactnative-setup.py'
 
-script_version = "1.3.2"
+script_version = "1.3.4"
 
 # This script is intended to be run from the root of a React Native project directory.
 
@@ -51,7 +51,7 @@ ok_to_proceed_with_modifications = True
 ### vvvv BEGIN CUSTOMIZE vvvv ###
 
 # Specify the path to bundletool.jar
-bt_dir = 'C:{ps}Users{ps}lamjo{ps}Desktop{ps}Homework{ps}1 Current Semester{ps}CPSC 411'.format(ps=path_separator) \
+bt_dir = 'C:{ps}Program Files{ps}'.format(ps=path_separator) \
     if running_on_windows \
     else '{home}{ps}Library{ps}'.format(
         home=os.environ.get('HOME'),ps=path_separator)
@@ -304,7 +304,7 @@ sound_assets_dir = 'assets/audio'
 react_native_config_path = 'react-native.config.js'
 react_native_config_contents = '''
 module.exports = {
-    assets: ['./assets/fonts'. './assets/audio'],
+    assets: ['./assets/fonts', './assets/audio'],
     dependencies: {
         'react-native-vector-icons': {
             platforms: {
@@ -550,7 +550,8 @@ def safe_exists(path):
 
 
 def paths_equal(path1, path2):
-    os.path.normcase(path1) == os.path.normcase(path2)
+    #print("comparing {p1} to {p2}".format(p1=path1,p2=path2))
+    return os.path.normcase(path1) == os.path.normcase(path2)
 
 def current_version_of_npm_package(pkg):
     url = 'https://unpkg.com/{pkg}/package.json'.format(pkg=pkg)
