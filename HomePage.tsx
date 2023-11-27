@@ -1,9 +1,12 @@
+// HomePage.tsx
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { getEntryList } from './NutritionEntryList';
 
-const HomePage = ({ dailyCalories, navigationRef }) => {
-  const navigation = useNavigation();
+const HomePage = ({ navigationRef }) => {
+  const entryList = getEntryList();
+
+  const dailyCalories = entryList.reduce((totalCalories, entry) => totalCalories + entry.calories, 0);
 
   const handleAddEntry = () => {
     if (navigationRef) {
@@ -30,12 +33,6 @@ const HomePage = ({ dailyCalories, navigationRef }) => {
         <View style={styles.showEntriesButton}>
           <Text style={styles.showEntriesButtonLabel}>Show Today's Entries</Text>
         </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.aboutButton}
-        onPress={() => navigation.navigate('About')}
-      >
-        <Text style={styles.aboutButtonText}>About</Text>
       </TouchableOpacity>
     </View>
   );
@@ -73,18 +70,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   showEntriesButtonLabel: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  aboutButton: {
-    position: 'absolute',
-    bottom: 10,
-    right: 10,
-    backgroundColor: 'purple',
-    padding: 10,
-    borderRadius: 5,
-  },
-  aboutButtonText: {
     color: 'white',
     fontWeight: 'bold',
   },

@@ -14,15 +14,24 @@ const Stack = createStackNavigator();
 const NutritionTrackerApp = () => {
   const navigationRef = React.useRef(null);
   const [dailyCalories, setDailyCalories] = useState(0);
+  const [entryList, setEntryList] = useState([]);
 
-  const handleAddEntry = async (calories) => {
-    await setDailyCalories((prevCalories) => prevCalories + calories);
+  const handleAddEntry = (calories) => {
+    setDailyCalories((prevCalories) => prevCalories + calories);
+    setEntryList([...entryList, { calories }]); // Update entryList when a new entry is added
   };
+
+  // Update dailyCalories and entryList when the component mounts
+  useEffect(() => {
+    // Pass the function to NutritionEntryForm
+    navigationRef.current.setParams({ onAddEntry: handleAddEntry });
+  }, []);
 
   const HomeScreenComponent = () => (
     <HomePage
       dailyCalories={dailyCalories}
       navigationRef={navigationRef}
+      entryList={entryList} // Pass entryList as a prop
     />
   );
 

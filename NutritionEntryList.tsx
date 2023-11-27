@@ -1,4 +1,4 @@
-// NutritionEntryList.ts
+// NutritionEntryList.tsx
 let entryList = []; // Your list to store entries
 
 export const addEntryToList = (entry) => {

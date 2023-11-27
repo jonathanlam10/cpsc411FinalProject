@@ -23,7 +23,7 @@ const TodayEntriesScreen = ({ navigation }) => {
         </View>
       ))}
       <Button
-        title="Go Back"
+        title="Back"
         onPress={() => navigation.goBack()}
       />
     </View>

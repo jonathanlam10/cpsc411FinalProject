@@ -4,7 +4,8 @@ import { View, TextInput, Button, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { addEntryToList } from './NutritionEntryList';
 
-const NutritionEntryForm = ({ onAddEntry }) => {
+const NutritionEntryForm = ({ route }) => {
+  const { onAddEntry } = route.params || {};
   const [foodName, setFoodName] = useState('');
   const [calories, setCalories] = useState('');
   const navigation = useNavigation();
@@ -17,16 +18,16 @@ const NutritionEntryForm = ({ onAddEntry }) => {
 
     addEntryToList(entry);
 
-    // Call the onAddEntry prop with the calories of the new entry
-    if (typeof onAddEntry === 'function') {
-          onAddEntry(entry.calories);
-        }
+    if (onAddEntry) {
+      onAddEntry(entry.calories);
+    }
 
     setFoodName('');
     setCalories('');
 
     navigation.navigate('Home');
   };
+
 
   return (
     <View style={styles.container}>
