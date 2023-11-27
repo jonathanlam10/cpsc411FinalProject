@@ -17,6 +17,11 @@ const NutritionEntryForm = ({ onAddEntry }) => {
 
     addEntryToList(entry);
 
+    // Call the onAddEntry prop with the calories of the new entry
+    if (typeof onAddEntry === 'function') {
+          onAddEntry(entry.calories);
+        }
+
     setFoodName('');
     setCalories('');
 

@@ -1,5 +1,5 @@
 // NutritionTrackerApp.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -15,9 +15,8 @@ const NutritionTrackerApp = () => {
   const navigationRef = React.useRef(null);
   const [dailyCalories, setDailyCalories] = useState(0);
 
-  // Define the onAddEntry function here
-  const handleAddEntry = (calories) => {
-    setDailyCalories((prevCalories) => prevCalories + calories);
+  const handleAddEntry = async (calories) => {
+    await setDailyCalories((prevCalories) => prevCalories + calories);
   };
 
   const HomeScreenComponent = () => (
