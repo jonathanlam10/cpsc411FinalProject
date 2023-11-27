@@ -22,19 +22,25 @@ const HomePage = ({ navigationRef }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Your Daily Calories:</Text>
-      <Text style={styles.calories}>{dailyCalories}</Text>
-      <TouchableOpacity onPress={handleAddEntry}>
-        <View style={styles.addButton}>
-          <Text style={styles.addButtonLabel}>Add New Entry</Text>
+          <Text style={styles.title}>Your Daily Calories:</Text>
+          <Text style={styles.calories}>{dailyCalories}</Text>
+          <TouchableOpacity onPress={handleAddEntry}>
+            <View style={styles.addButton}>
+              <Text style={styles.addButtonLabel}>Add New Entry</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleShowEntries}>
+            <View style={styles.showEntriesButton}>
+              <Text style={styles.showEntriesButtonLabel}>Show Today's Entries</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.aboutButton}
+            onPress={() => navigationRef.current.navigate('About')}
+          >
+            <Text style={styles.aboutButtonText}>About</Text>
+          </TouchableOpacity>
         </View>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleShowEntries}>
-        <View style={styles.showEntriesButton}>
-          <Text style={styles.showEntriesButtonLabel}>Show Today's Entries</Text>
-        </View>
-      </TouchableOpacity>
-    </View>
   );
 };
 
@@ -73,6 +79,18 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
+   aboutButton: {
+      position: 'absolute',
+      bottom: 10,
+      right: 10,
+      backgroundColor: 'purple',
+      padding: 10,
+      borderRadius: 5,
+    },
+    aboutButtonText: {
+      color: 'white',
+      fontWeight: 'bold',
+    },
 });
 
 export default HomePage;
