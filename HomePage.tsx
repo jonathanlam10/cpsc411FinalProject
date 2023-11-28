@@ -3,10 +3,18 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { getEntryList } from './NutritionEntryList';
+import Sound from 'react-native-sound';
 
 const HomePage = ({ navigationRef, goalCalories, setGoalCalories }) => {
   const [localDailyCalories, setLocalDailyCalories] = useState(0);
+  const [soundPlayed, setSoundPlayed] = useState(false); // Track whether the sound has been played
   const navigation = useNavigation();
+
+  const goalReachedSound = new Sound(require('./assets/audio/goalReached.mp3'), (error) => {
+    if (error) {
+      console.error('Error loading sound:', error);
+    }
+  });
 
   const calculateTotalCalories = (entries) => {
     return entries.reduce((totalCalories, entry) => totalCalories + entry.calories, 0);
@@ -16,13 +24,30 @@ const HomePage = ({ navigationRef, goalCalories, setGoalCalories }) => {
     const entries = getEntryList();
     const totalCalories = calculateTotalCalories(entries);
     setLocalDailyCalories(totalCalories);
+
+    // Check if daily calories equal set goal calories and sound hasn't been played
+    if (localDailyCalories === goalCalories && !soundPlayed) {
+      // Play the sound
+      goalReachedSound.play((success) => {
+        if (success) {
+          // Mark that the sound has been played
+          setSoundPlayed(true);
+        } else {
+          //console.error('Error playing sound');
+        }
+      });
+    }
+
+    // Check if calories have changed, reset soundPlayed state
+    if (localDailyCalories !== goalCalories) {
+      setSoundPlayed(false);
+    }
   };
 
   useFocusEffect(
     React.useCallback(() => {
-      // This will be called when the screen is focused
       updateCalories();
-    }, [])
+    }, [localDailyCalories, goalCalories, soundPlayed])
   );
 
   const handleAddEntry = () => {
@@ -179,3 +204,4 @@ const styles = StyleSheet.create({
 });
 
 export default HomePage;
+
