@@ -18,10 +18,10 @@ const Stack = createStackNavigator();
 
 const NutritionTrackerApp = () => {
   const navigationRef = React.useRef(null);
-  const [goalCalories, setGoalCalories] = useState(0); // Add this line
+  const [goalCalories, setGoalCalories] = useState(0);
 
   useEffect(() => {
-    // Your other initialization logic
+    // placeholder
   }, []);
 
   const HomeScreenComponent = () => (

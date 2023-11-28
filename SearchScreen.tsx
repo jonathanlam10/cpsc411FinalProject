@@ -15,7 +15,7 @@ const SearchScreen = ({ navigation }) => {
     <View style={styles.entryItem}>
       <Text>{item.foodName}</Text>
       <Text>{item.calories} calories</Text>
-      {/* Add more details if needed */}
+      {/* placeholder*/}
     </View>
   );
 

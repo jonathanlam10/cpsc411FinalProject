@@ -19,7 +19,7 @@ const ViewAllEntriesScreen = () => {
           <View>
             <Text>{entry.foodName}</Text>
             <Text>{entry.calories} calories</Text>
-            {/* Add more details if needed */}
+            {/* PlaceHolder */}
           </View>
         </TouchableOpacity>
       ))}

@@ -24,7 +24,7 @@ const TodayEntriesScreen = ({ navigation }) => {
           <View>
             <Text>{entry.foodName}</Text>
             <Text>{entry.calories} calories</Text>
-            {/* Add more details if needed */}
+            {/* placeholder */}
           </View>
         </TouchableOpacity>
       ))}
