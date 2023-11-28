@@ -1,3 +1,4 @@
+//NutritionTrackerApp.tsx
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
