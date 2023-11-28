@@ -1,9 +1,14 @@
 // NutritionEntryList.tsx
-export const entryList = []; // Your list to store entries
+export const entryList = [];
 
 export const addEntryToList = (entry) => {
   entryList.push(entry);
-  console.log('Entry added:', entryList); // Optional: Log the updated list
+  console.log('Entry added:', entryList);
+};
+
+export const removeEntryFromList = (index) => {
+  entryList.splice(index, 1);
+  console.log('Entry removed:', entryList);
 };
 
 export const getEntryList = () => {

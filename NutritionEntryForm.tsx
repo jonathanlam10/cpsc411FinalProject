@@ -26,7 +26,7 @@ const NutritionEntryForm = ({ route }) => {
         setFoodName('');
         setCalories('');
 
-        // Uncomment the line below if it should navigate back to Home
+        // Uncomment if to navigate home
         // navigation.navigate('Home');
       } catch (error) {
         console.error('Error adding entry:', error);

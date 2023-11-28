@@ -19,7 +19,7 @@ const HomePage = ({ navigationRef }) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      // This will be called when the screen is focused
+      // called when the screen is focused
       updateCalories();
     }, [])
   );

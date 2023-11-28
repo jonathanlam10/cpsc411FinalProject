@@ -1,6 +1,6 @@
 // TodayEntriesScreen.tsx
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, TouchableOpacity, Button } from 'react-native';
 import { getEntryList } from './NutritionEntryList';
 
 const TodayEntriesScreen = ({ navigation }) => {
@@ -11,16 +11,22 @@ const TodayEntriesScreen = ({ navigation }) => {
     return totalCalories + entry.calories;
   }, 0);
 
+  const handleEditEntry = (index) => {
+    navigation.navigate('EditEntry', { entryIndex: index });
+  };
+
   return (
     <View>
       <Text>Today's Calories: {dailyCalories}</Text>
       <Text>Entries:</Text>
       {entryList.map((entry, index) => (
-        <View key={index}>
-          <Text>{entry.foodName}</Text>
-          <Text>{entry.calories} calories</Text>
-          {/* Add more details if needed */}
-        </View>
+        <TouchableOpacity key={index} onPress={() => handleEditEntry(index)}>
+          <View>
+            <Text>{entry.foodName}</Text>
+            <Text>{entry.calories} calories</Text>
+            {/* Add more details if needed */}
+          </View>
+        </TouchableOpacity>
       ))}
       <Button
         title="Back"
