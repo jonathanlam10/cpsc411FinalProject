@@ -37,7 +37,7 @@ const ViewAllEntriesScreen = () => {
                 key={index}
                 onPress={() => navigation.navigate('EntryDetails', { entry })}
               >
-                <View>
+                <View style={styles.entryContainer}>
                   <Text>{entry.foodName}</Text>
                   <Text>{entry.calories} calories</Text>
                   {/* Placeholder */}
@@ -62,11 +62,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   dateHeading: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginTop: 10,
-    marginBottom: 5,
+      fontSize: 18,
+      fontWeight: 'bold',
+      marginTop: 10,
+      marginBottom: 5,
   },
+  entryContainer: {
+      borderWidth: 1,
+      borderColor: 'gray',
+      borderRadius: 8,
+      padding: 10,
+      marginBottom: 10,
+    },
   backButton: {
     position: 'absolute',
     bottom: 10,

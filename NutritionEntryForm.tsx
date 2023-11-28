@@ -1,6 +1,6 @@
 // NutritionEntryForm.tsx
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { addEntryToList } from './NutritionEntryList';
 
@@ -11,28 +11,27 @@ const NutritionEntryForm = ({ route }) => {
   const navigation = useNavigation();
 
   const handleAddEntry = () => {
-      try {
-        const entry = {
-          foodName: foodName,
-          calories: parseInt(calories, 10),
-        };
+    try {
+      const entry = {
+        foodName: foodName,
+        calories: parseInt(calories, 10),
+      };
 
-        addEntryToList(entry);
+      addEntryToList(entry);
 
-        if (onAddEntry) {
-          onAddEntry(entry.calories);
-        }
-
-        setFoodName('');
-        setCalories('');
-
-        // Uncomment if to navigate home
-        // navigation.navigate('Home');
-      } catch (error) {
-        console.error('Error adding entry:', error);
+      if (onAddEntry) {
+        onAddEntry(entry.calories);
       }
-    };
 
+      setFoodName('');
+      setCalories('');
+
+      // Uncomment if to navigate home
+      // navigation.navigate('Home');
+    } catch (error) {
+      console.error('Error adding entry:', error);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -49,8 +48,18 @@ const NutritionEntryForm = ({ route }) => {
         onChangeText={(text) => setCalories(text)}
         keyboardType="numeric"
       />
-      <Button title="Add Entry" onPress={handleAddEntry} />
-      <Button title="Back" onPress={() => navigation.goBack()} />
+      <TouchableOpacity
+        style={styles.addButton}
+        onPress={handleAddEntry}
+      >
+        <Text style={styles.buttonText}>Add Entry</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <Text style={styles.buttonText}>Back</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -67,6 +76,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 12,
     paddingLeft: 8,
+  },
+  addButton: {
+    backgroundColor: 'gray',
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 10,
+  },
+  backButton: {
+    backgroundColor: 'gray',
+    padding: 10,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
 

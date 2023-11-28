@@ -1,5 +1,6 @@
+// TodayEntriesScreen.tsx
 import React from 'react';
-import { View, Text, TouchableOpacity, Button, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import { getEntryList } from './NutritionEntryList';
 
 const TodayEntriesScreen = ({ navigation }) => {
@@ -21,7 +22,7 @@ const TodayEntriesScreen = ({ navigation }) => {
         <Text>Entries:</Text>
         {entryList.map((entry, index) => (
           <TouchableOpacity key={index} onPress={() => handleEditEntry(index)}>
-            <View>
+            <View style={styles.entryContainer}>
               <Text>{entry.foodName}</Text>
               <Text>{entry.calories} calories</Text>
               {/* placeholder */}
@@ -43,11 +44,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  entryContainer: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 8,
+    padding: 10,
+    marginBottom: 10,
+  },
   backButton: {
     position: 'absolute',
     bottom: 10,
     left: 10,
-    backgroundColor: 'gray', // Set your desired color here
+    backgroundColor: 'gray',
     padding: 10,
     borderRadius: 5,
   },

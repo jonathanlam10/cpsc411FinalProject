@@ -12,11 +12,15 @@ const SearchScreen = ({ navigation }) => {
   );
 
   const renderItem = ({ item }) => (
-    <View style={styles.entryItem}>
-      <Text>{item.foodName}</Text>
-      <Text>{item.calories} calories</Text>
-      {/* placeholder*/}
-    </View>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('EntryDetails', { entry: item })}
+      style={styles.entryItem}
+    >
+      <View style={styles.entryContainer}>
+        <Text>{item.foodName}</Text>
+        <Text>{item.calories} calories</Text>
+      </View>
+    </TouchableOpacity>
   );
 
   return (
@@ -47,7 +51,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: 'lightblue',
+    backgroundColor: 'white',
   },
   searchInput: {
     height: 40,
@@ -58,6 +62,13 @@ const styles = StyleSheet.create({
   },
   entryItem: {
     marginBottom: 8,
+  },
+  entryContainer: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 8,
+    padding: 10,
+    marginBottom: 10,
   },
   backButton: {
     position: 'absolute',
