@@ -1,5 +1,4 @@
-// NutritionTrackerApp.tsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -9,19 +8,23 @@ import AboutScreen from './AboutScreen';
 import HomePage from './HomePage';
 import TodayEntriesScreen from './TodayEntriesScreen';
 import EditEntryScreen from './EditEntryScreen';
-import { getEntryList } from './NutritionEntryList';
+import SetGoalScreen from './SetGoalScreen';
 
 const Stack = createStackNavigator();
 
 const NutritionTrackerApp = () => {
   const navigationRef = React.useRef(null);
+  const [goalCalories, setGoalCalories] = useState(0); // Add this line
 
   useEffect(() => {
+    // Your other initialization logic
   }, []);
 
   const HomeScreenComponent = () => (
     <HomePage
       navigationRef={navigationRef}
+      goalCalories={goalCalories}
+      setGoalCalories={setGoalCalories}
     />
   );
 
@@ -32,7 +35,8 @@ const NutritionTrackerApp = () => {
         <Stack.Screen name="NutritionEntryForm" component={NutritionEntryForm} />
         <Stack.Screen name="TodayEntries" component={TodayEntriesScreen} />
         <Stack.Screen name="About" component={() => <AboutScreen navigationRef={navigationRef} />} />
-         <Stack.Screen name="EditEntry" component={EditEntryScreen} />
+        <Stack.Screen name="EditEntry" component={EditEntryScreen} />
+        <Stack.Screen name="SetGoal" component={SetGoalScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

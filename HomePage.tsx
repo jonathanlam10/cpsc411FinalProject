@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { getEntryList } from './NutritionEntryList';
 
-const HomePage = ({ navigationRef }) => {
+const HomePage = ({ navigationRef, goalCalories, setGoalCalories }) => {
   const [localDailyCalories, setLocalDailyCalories] = useState(0);
 
   const calculateTotalCalories = (entries) => {
@@ -19,7 +19,7 @@ const HomePage = ({ navigationRef }) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      // called when the screen is focused
+      // This will be called when the screen is focused
       updateCalories();
     }, [])
   );
@@ -36,10 +36,19 @@ const HomePage = ({ navigationRef }) => {
     }
   };
 
+  const handleSetGoal = () => {
+    if (navigationRef) {
+      navigationRef.current.navigate('SetGoal', {
+        goalCalories,
+        setGoalCalories,
+      });
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Your Daily Calories:</Text>
-      <Text style={styles.calories}>{localDailyCalories}</Text>
+      <Text style={styles.calories}>{localDailyCalories} / {goalCalories}</Text>
       <TouchableOpacity onPress={handleAddEntry}>
         <View style={styles.addButton}>
           <Text style={styles.addButtonLabel}>Add New Entry</Text>
@@ -56,10 +65,12 @@ const HomePage = ({ navigationRef }) => {
       >
         <Text style={styles.aboutButtonText}>About</Text>
       </TouchableOpacity>
+      <TouchableOpacity style={styles.setGoalButton} onPress={handleSetGoal}>
+        <Text style={styles.setGoalButtonText}>Set Goal</Text>
+      </TouchableOpacity>
     </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
@@ -108,6 +119,18 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
+  setGoalButton: {
+      position: 'absolute',
+      bottom: 10,
+      left: 10,
+      backgroundColor: 'orange', // Change the color as needed
+      padding: 10,
+      borderRadius: 5,
+    },
+    setGoalButtonText: {
+      color: 'white',
+      fontWeight: 'bold',
+    },
 });
 
 export default HomePage;
