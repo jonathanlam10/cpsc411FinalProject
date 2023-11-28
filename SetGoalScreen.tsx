@@ -1,6 +1,7 @@
 // SetGoalScreen.tsx
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import BackButton from './BackButton'; // Import the BackButton component
 
 const SetGoalScreen = ({ route, navigation }) => {
   const { goalCalories, setGoalCalories } = route.params || {};
@@ -22,6 +23,11 @@ const SetGoalScreen = ({ route, navigation }) => {
         keyboardType="numeric"
       />
       <Button title="Save Goal" onPress={handleSaveGoal} />
+
+      {/* Back button */}
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+        <Text style={styles.backButtonText}>Back</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -33,16 +39,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
-  title: {
-    fontSize: 20,
-    marginBottom: 10,
-  },
-  goalInput: {
+  input: {
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
     marginBottom: 10,
     paddingLeft: 8,
+  },
+  backButton: {
+    position: 'absolute',
+    bottom: 10,
+    left: 10,
+    backgroundColor: 'gray', // Set your desired color here
+    padding: 10,
+    borderRadius: 5,
+  },
+  backButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
 

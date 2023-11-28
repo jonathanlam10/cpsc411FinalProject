@@ -1,6 +1,6 @@
 // ViewAllEntriesScreen.tsx
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { getEntryList } from './NutritionEntryList';
 import { useNavigation } from '@react-navigation/native';
 
@@ -23,14 +23,26 @@ const ViewAllEntriesScreen = () => {
           </View>
         </TouchableOpacity>
       ))}
-      <TouchableOpacity
-        style={{ backgroundColor: 'gray', padding: 10, borderRadius: 5, marginTop: 10 }}
-        onPress={() => navigation.goBack()}
-      >
-        <Text style={{ color: 'white', fontWeight: 'bold' }}>Back</Text>
-      </TouchableOpacity>
-    </View>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+               <Text style={styles.backButtonText}>Back</Text>
+             </TouchableOpacity>
+           </View>
   );
 };
+
+const styles = StyleSheet.create({
+   backButton: {
+     position: 'absolute',
+     bottom: -680,
+     left: 10,
+     backgroundColor: 'gray', // Set your desired color here
+     padding: 10,
+     borderRadius: 5,
+   },
+   backButtonText: {
+     color: 'white',
+     fontWeight: 'bold',
+   },
+ });
 
 export default ViewAllEntriesScreen;
