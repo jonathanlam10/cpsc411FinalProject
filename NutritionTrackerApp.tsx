@@ -11,6 +11,8 @@ import TodayEntriesScreen from './TodayEntriesScreen';
 import EditEntryScreen from './EditEntryScreen';
 import SetGoalScreen from './SetGoalScreen';
 import SearchScreen from './SearchScreen';
+import ViewAllEntriesScreen from './ViewAllEntriesScreen';
+
 
 const Stack = createStackNavigator();
 
@@ -39,7 +41,8 @@ const NutritionTrackerApp = () => {
         <Stack.Screen name="About" component={() => <AboutScreen navigationRef={navigationRef} />} />
         <Stack.Screen name="EditEntry" component={EditEntryScreen} />
         <Stack.Screen name="SetGoal" component={SetGoalScreen} />
-         <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen name="ViewAllEntries" component={ViewAllEntriesScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

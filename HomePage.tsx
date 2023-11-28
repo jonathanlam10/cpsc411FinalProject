@@ -47,15 +47,23 @@ const HomePage = ({ navigationRef, goalCalories, setGoalCalories }) => {
   };
 
   const handleSearch = () => {
-      if (navigationRef) {
-        navigationRef.current.navigate('Search');
-      }
-    };
+    if (navigationRef) {
+      navigationRef.current.navigate('Search');
+    }
+  };
+
+  const handleViewAllEntries = () => {
+    if (navigationRef) {
+      navigationRef.current.navigate('ViewAllEntries');
+    }
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Your Daily Calories:</Text>
-      <Text style={styles.calories}>{localDailyCalories} / {goalCalories}</Text>
+      <Text style={styles.calories}>
+        {localDailyCalories} / {goalCalories}
+      </Text>
       <TouchableOpacity onPress={handleAddEntry}>
         <View style={styles.addButton}>
           <Text style={styles.addButtonLabel}>Add New Entry</Text>
@@ -76,10 +84,13 @@ const HomePage = ({ navigationRef, goalCalories, setGoalCalories }) => {
         <Text style={styles.setGoalButtonText}>Set Goal</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleSearch}>
-              <View style={styles.searchButton}>
-                <Text style={styles.searchButtonText}>Search</Text>
-              </View>
-            </TouchableOpacity>
+        <View style={styles.searchButton}>
+          <Text style={styles.searchButtonText}>Search</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.viewAllEntriesButton} onPress={handleViewAllEntries}>
+        <Text style={styles.viewAllEntriesButtonText}>View All Entries</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -132,27 +143,39 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   setGoalButton: {
-      position: 'absolute',
-      bottom: 10,
-      left: 10,
-      backgroundColor: 'orange', // Change the color as needed
-      padding: 10,
-      borderRadius: 5,
-    },
-    setGoalButtonText: {
-      color: 'white',
-      fontWeight: 'bold',
-    },
-    searchButton: {
-        backgroundColor: 'gray',
-        padding: 10,
-        borderRadius: 5,
-        marginBottom: 10,
-      },
-      searchButtonText: {
-        color: 'white',
-        fontWeight: 'bold',
-      },
+    position: 'absolute',
+    bottom: 10,
+    left: 10,
+    backgroundColor: 'orange', // Change the color as needed
+    padding: 10,
+    borderRadius: 5,
+  },
+  setGoalButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  searchButton: {
+    backgroundColor: 'gray',
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 10,
+  },
+  searchButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  viewAllEntriesButton: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    backgroundColor: 'purple',
+    padding: 10,
+    borderRadius: 5,
+  },
+  viewAllEntriesButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
 });
 
 export default HomePage;
