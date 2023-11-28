@@ -4,25 +4,47 @@ import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-nati
 import { getEntryList } from './NutritionEntryList';
 import { useNavigation } from '@react-navigation/native';
 
+const groupEntriesByDate = (entries) => {
+  const groupedEntries = {};
+
+  entries.forEach((entry) => {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().split('T')[0]; // Get the current date in YYYY-MM-DD format
+
+    if (!groupedEntries[formattedDate]) {
+      groupedEntries[formattedDate] = [];
+    }
+
+    groupedEntries[formattedDate].push(entry);
+  });
+
+  return groupedEntries;
+};
+
 const ViewAllEntriesScreen = () => {
   const navigation = useNavigation();
   const entryList = getEntryList();
+  const groupedEntries = groupEntriesByDate(entryList);
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <View style={styles.container}>
-        <Text>All Entries:</Text>
-        {entryList.map((entry, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() => navigation.navigate('EntryDetails', { entry })}
-          >
-            <View>
-              <Text>{entry.foodName}</Text>
-              <Text>{entry.calories} calories</Text>
-              {/* PlaceHolder */}
-            </View>
-          </TouchableOpacity>
+        {Object.keys(groupedEntries).map((date) => (
+          <View key={date}>
+            <Text style={styles.dateHeading}>{date}</Text>
+            {groupedEntries[date].map((entry, index) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() => navigation.navigate('EntryDetails', { entry })}
+              >
+                <View>
+                  <Text>{entry.foodName}</Text>
+                  <Text>{entry.calories} calories</Text>
+                  {/* Placeholder */}
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
         ))}
       </View>
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
@@ -35,6 +57,12 @@ const ViewAllEntriesScreen = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
+  },
+  dateHeading: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop: 10,
+    marginBottom: 5,
   },
   backButton: {
     position: 'absolute',
@@ -51,4 +79,3 @@ const styles = StyleSheet.create({
 });
 
 export default ViewAllEntriesScreen;
-
