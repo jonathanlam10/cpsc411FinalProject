@@ -1,11 +1,12 @@
 // HomePage.tsx
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { getEntryList } from './NutritionEntryList';
 
 const HomePage = ({ navigationRef, goalCalories, setGoalCalories }) => {
   const [localDailyCalories, setLocalDailyCalories] = useState(0);
+  const navigation = useNavigation();
 
   const calculateTotalCalories = (entries) => {
     return entries.reduce((totalCalories, entry) => totalCalories + entry.calories, 0);
@@ -45,6 +46,12 @@ const HomePage = ({ navigationRef, goalCalories, setGoalCalories }) => {
     }
   };
 
+  const handleSearch = () => {
+      if (navigationRef) {
+        navigationRef.current.navigate('Search');
+      }
+    };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Your Daily Calories:</Text>
@@ -68,6 +75,11 @@ const HomePage = ({ navigationRef, goalCalories, setGoalCalories }) => {
       <TouchableOpacity style={styles.setGoalButton} onPress={handleSetGoal}>
         <Text style={styles.setGoalButtonText}>Set Goal</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={handleSearch}>
+              <View style={styles.searchButton}>
+                <Text style={styles.searchButtonText}>Search</Text>
+              </View>
+            </TouchableOpacity>
     </View>
   );
 };
@@ -131,6 +143,16 @@ const styles = StyleSheet.create({
       color: 'white',
       fontWeight: 'bold',
     },
+    searchButton: {
+        backgroundColor: 'gray',
+        padding: 10,
+        borderRadius: 5,
+        marginBottom: 10,
+      },
+      searchButtonText: {
+        color: 'white',
+        fontWeight: 'bold',
+      },
 });
 
 export default HomePage;
