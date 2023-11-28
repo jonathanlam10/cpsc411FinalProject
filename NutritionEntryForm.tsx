@@ -57,7 +57,9 @@ const NutritionEntryForm = ({ route }) => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     padding: 16,
+    backgroundColor: 'white',
   },
   input: {
     height: 40,

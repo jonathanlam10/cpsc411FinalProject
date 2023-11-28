@@ -57,6 +57,9 @@ const ViewAllEntriesScreen = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
+    flex: 1,
+    paddingHorizontal: 20,
+    backgroundColor: 'white',
   },
   dateHeading: {
     fontSize: 18,

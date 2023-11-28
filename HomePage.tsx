@@ -96,7 +96,7 @@ const HomePage = ({ navigationRef, goalCalories, setGoalCalories }) => {
       </TouchableOpacity>
       <TouchableOpacity onPress={handleShowEntries}>
         <View style={styles.showEntriesButton}>
-          <Text style={styles.showEntriesButtonLabel}>Show Today's Entries</Text>
+          <Text style={styles.showEntriesButtonLabel}>Today's Entries</Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity
@@ -125,6 +125,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'lightblue',
   },
   title: {
     fontSize: 20,
@@ -159,7 +160,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 10,
     right: 10,
-    backgroundColor: 'purple',
+    backgroundColor: 'blue',
     padding: 10,
     borderRadius: 5,
   },
@@ -171,7 +172,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 10,
     left: 10,
-    backgroundColor: 'orange',
+    backgroundColor: 'blue',
     padding: 10,
     borderRadius: 5,
   },
@@ -180,10 +181,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   searchButton: {
+    position: 'absolute',
+    bottom: 467,
+    right: -185,
     backgroundColor: 'gray',
     padding: 10,
     borderRadius: 5,
-    marginBottom: 10,
   },
   searchButtonText: {
     color: 'white',
@@ -193,7 +196,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 10,
     left: 10,
-    backgroundColor: 'purple',
+    backgroundColor: 'blue',
     padding: 10,
     borderRadius: 5,
   },

@@ -1,6 +1,7 @@
 //NutritionTrackerApp.tsx
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import NutritionEntryForm from './NutritionEntryForm';
@@ -48,4 +49,12 @@ const NutritionTrackerApp = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'lightblue',
+  },
+});
 export default NutritionTrackerApp;

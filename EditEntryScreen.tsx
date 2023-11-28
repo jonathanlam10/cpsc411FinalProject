@@ -59,6 +59,8 @@ const EditEntry = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
+    flex: 1,
+    backgroundColor: 'white',
   },
   input: {
     height: 40,
