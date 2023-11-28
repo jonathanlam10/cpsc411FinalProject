@@ -1,5 +1,5 @@
 // NutritionEntryList.tsx
-let entryList = []; // Your list to store entries
+export const entryList = []; // Your list to store entries
 
 export const addEntryToList = (entry) => {
   entryList.push(entry);

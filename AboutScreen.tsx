@@ -7,10 +7,13 @@ import { Linking } from 'react-native';
 const AboutScreen = () => {
   const navigation = useNavigation();
 
-  const handleStartPress = () => {
-    // Navigate to the 'Home' screen
-    if (navigation) {
-      navigation.navigate('Home');
+  const handleBackPress = () => {
+    try {
+      if (navigation) {
+        navigation.goBack();
+      }
+    } catch (error) {
+      console.error('Error navigating back:', error);
     }
   };
 
@@ -18,21 +21,24 @@ const AboutScreen = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Stay on Track!</Text>
       <Text style={styles.subtitle}>About: </Text>
-      <Text style={styles.subtitle}> If you're like me and struggle with not eating enough or (in my case) eating to much, looking for a great app to track your daily nutrition is essential. My app "Stay on Track!" will help anyone effortlessly keep track of nutrition management and reach their goals. While there are a numerous amount of fitness apps out there, this is the only app you will ever need again!</Text>
+      <Text style={styles.subtitle}>
+        If you're like me and struggle with not eating enough or (in my case) eating too much, looking for a great app
+        to track your daily nutrition is essential. My app "Stay on Track!" will help anyone effortlessly keep track of
+        nutrition management and reach their goals. While there are a numerous amount of fitness apps out there, this is
+        the only app you will ever need again!
+      </Text>
       <Text style={styles.subtitle}>Features: </Text>
       <Text style={styles.subtitle}>- Users can track daily nutrition </Text>
-      <Text style={styles.subtitle}>- Users save nutrition information of food for later </Text>
-      <Text style={styles.subtitle}>- Users can look at previous data entries </Text>
-      <Text style={styles.subtitle}>- Users can set nutrition goals </Text>
-      <Text style={styles.subtitle}>- Users can see if they reached their goals  </Text>
-      <Text style={styles.subtitle}>Check out the project on GitHub:</Text>
-      <TouchableOpacity onPress={() => Linking.openURL('https://github.com/jonathanlam10/cpsc411FinalProject')}>
-        <Text style={styles.link}>https://github.com/jonathanlam10/cpsc411FinalProject</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleStartPress}>
-        <View style={styles.startButton}>
-          <Text style={styles.startButtonText}>START</Text>
-        </View>
+            <Text style={styles.subtitle}>- Users save nutrition information of food for later </Text>
+            <Text style={styles.subtitle}>- Users can look at previous data entries </Text>
+            <Text style={styles.subtitle}>- Users can set nutrition goals </Text>
+            <Text style={styles.subtitle}>- Users can see if they reached their goals  </Text>
+            <Text style={styles.subtitle}>Check out the project on GitHub:</Text>
+            <TouchableOpacity onPress={() => Linking.openURL('https://github.com/jonathanlam10/cpsc411FinalProject')}>
+              <Text style={styles.link}>https://github.com/jonathanlam10/cpsc411FinalProject</Text>
+            </TouchableOpacity>
+      <TouchableOpacity onPress={handleBackPress} style={styles.backButton}>
+        <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
     </View>
   );
@@ -69,6 +75,18 @@ const styles = StyleSheet.create({
   startButtonText: {
     color: 'white',
     fontSize: 18,
+    fontWeight: 'bold',
+  },
+  backButton: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    backgroundColor: 'gray',
+    padding: 10,
+    borderRadius: 5,
+  },
+  backButtonText: {
+    color: 'white',
     fontWeight: 'bold',
   },
 });

@@ -11,22 +11,27 @@ const NutritionEntryForm = ({ route }) => {
   const navigation = useNavigation();
 
   const handleAddEntry = () => {
-    const entry = {
-      foodName: foodName,
-      calories: parseInt(calories, 10),
+      try {
+        const entry = {
+          foodName: foodName,
+          calories: parseInt(calories, 10),
+        };
+
+        addEntryToList(entry);
+
+        if (onAddEntry) {
+          onAddEntry(entry.calories);
+        }
+
+        setFoodName('');
+        setCalories('');
+
+        // Uncomment the line below if it should navigate back to Home
+        // navigation.navigate('Home');
+      } catch (error) {
+        console.error('Error adding entry:', error);
+      }
     };
-
-    addEntryToList(entry);
-
-    if (onAddEntry) {
-      onAddEntry(entry.calories);
-    }
-
-    setFoodName('');
-    setCalories('');
-
-    navigation.navigate('Home');
-  };
 
 
   return (
@@ -45,7 +50,7 @@ const NutritionEntryForm = ({ route }) => {
         keyboardType="numeric"
       />
       <Button title="Add Entry" onPress={handleAddEntry} />
-      <Button title="Back" onPress={() => navigation.navigate('Home')} />
+      <Button title="Back" onPress={() => navigation.goBack()} />
     </View>
   );
 };

@@ -1,12 +1,28 @@
 // HomePage.tsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { getEntryList } from './NutritionEntryList';
 
 const HomePage = ({ navigationRef }) => {
-  const entryList = getEntryList();
+  const [localDailyCalories, setLocalDailyCalories] = useState(0);
 
-  const dailyCalories = entryList.reduce((totalCalories, entry) => totalCalories + entry.calories, 0);
+  const calculateTotalCalories = (entries) => {
+    return entries.reduce((totalCalories, entry) => totalCalories + entry.calories, 0);
+  };
+
+  const updateCalories = () => {
+    const entries = getEntryList();
+    const totalCalories = calculateTotalCalories(entries);
+    setLocalDailyCalories(totalCalories);
+  };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      // This will be called when the screen is focused
+      updateCalories();
+    }, [])
+  );
 
   const handleAddEntry = () => {
     if (navigationRef) {
@@ -22,27 +38,28 @@ const HomePage = ({ navigationRef }) => {
 
   return (
     <View style={styles.container}>
-          <Text style={styles.title}>Your Daily Calories:</Text>
-          <Text style={styles.calories}>{dailyCalories}</Text>
-          <TouchableOpacity onPress={handleAddEntry}>
-            <View style={styles.addButton}>
-              <Text style={styles.addButtonLabel}>Add New Entry</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleShowEntries}>
-            <View style={styles.showEntriesButton}>
-              <Text style={styles.showEntriesButtonLabel}>Show Today's Entries</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.aboutButton}
-            onPress={() => navigationRef.current.navigate('About')}
-          >
-            <Text style={styles.aboutButtonText}>About</Text>
-          </TouchableOpacity>
+      <Text style={styles.title}>Your Daily Calories:</Text>
+      <Text style={styles.calories}>{localDailyCalories}</Text>
+      <TouchableOpacity onPress={handleAddEntry}>
+        <View style={styles.addButton}>
+          <Text style={styles.addButtonLabel}>Add New Entry</Text>
         </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handleShowEntries}>
+        <View style={styles.showEntriesButton}>
+          <Text style={styles.showEntriesButtonLabel}>Show Today's Entries</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.aboutButton}
+        onPress={() => navigationRef.current.navigate('About')}
+      >
+        <Text style={styles.aboutButtonText}>About</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -79,18 +96,18 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
-   aboutButton: {
-      position: 'absolute',
-      bottom: 10,
-      right: 10,
-      backgroundColor: 'purple',
-      padding: 10,
-      borderRadius: 5,
-    },
-    aboutButtonText: {
-      color: 'white',
-      fontWeight: 'bold',
-    },
+  aboutButton: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+    backgroundColor: 'purple',
+    padding: 10,
+    borderRadius: 5,
+  },
+  aboutButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
 });
 
 export default HomePage;
