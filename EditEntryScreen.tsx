@@ -31,30 +31,34 @@ const EditEntry = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text>Edit Entry</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Food Name"
-        value={foodName}
-        onChangeText={(text) => setFoodName(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Calories"
-        value={calories.toString()}
-        onChangeText={(text) => setCalories(text)}
-        keyboardType="numeric"
-      />
-      <Button title="Save Changes" onPress={handleSaveChanges} />
+      <View style={styles.container}>
+        <Text>Edit Entry</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Food Name"
+          value={foodName}
+          onChangeText={(text) => setFoodName(text)}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Calories"
+          value={calories.toString()}
+          onChangeText={(text) => setCalories(text)}
+          keyboardType="numeric"
+        />
 
-      {/* Add a Delete button */}
-      <TouchableOpacity style={styles.deleteButton} onPress={handleDeleteEntry}>
-        <Text style={styles.deleteButtonText}>Delete</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
+        {/* Replace the default Button with TouchableOpacity */}
+        <TouchableOpacity style={styles.saveChangesButton} onPress={handleSaveChanges}>
+          <Text style={styles.saveChangesButtonText}>Save</Text>
+        </TouchableOpacity>
+
+        {/* Add a Delete button */}
+        <TouchableOpacity style={styles.deleteButton} onPress={handleDeleteEntry}>
+          <Text style={styles.deleteButtonText}>Delete</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
 
 const styles = StyleSheet.create({
   container: {
@@ -70,12 +74,22 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
   },
   deleteButton: {
-    backgroundColor: 'red',
+    backgroundColor: 'gray',
     padding: 10,
     borderRadius: 5,
     marginTop: 10,
   },
   deleteButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  saveChangesButton: {
+    backgroundColor: 'gray',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+  },
+  saveChangesButtonText: {
     color: 'white',
     fontWeight: 'bold',
   },
