@@ -136,13 +136,13 @@ const styles = StyleSheet.create({
    },
   title: {
     fontSize: 20,
-    color: 'gray',
+    color: 'black',
     marginBottom: 10,
     fontWeight: 'bold',
   },
   calories: {
     fontSize: 24,
-    color: 'gray',
+    color: 'black',
     fontWeight: 'bold',
     marginBottom: 20,
   },

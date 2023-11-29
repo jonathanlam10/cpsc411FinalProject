@@ -34,6 +34,7 @@ const AboutScreen = () => {
             <Text style={styles.subtitle}>- Users can look at previous data entries </Text>
             <Text style={styles.subtitle}>- Users can set nutrition goals </Text>
             <Text style={styles.subtitle}>- Users can see if they reached their goals  </Text>
+            <Text style={styles.subtitle}>Author: Jonathan Lam  </Text>
             <Text style={styles.subtitle}>Check out the project on GitHub:</Text>
             <TouchableOpacity onPress={() => Linking.openURL('https://github.com/jonathanlam10/cpsc411FinalProject')}>
               <Text style={styles.link}>https://github.com/jonathanlam10/cpsc411FinalProject</Text>
@@ -65,12 +66,12 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: 'gray',
+    color: 'dimgray',
   },
   subtitle: {
     fontSize: 16,
     marginBottom: 10,
-    color: 'gray',
+    color: 'dimgray',
   },
   link: {
     fontSize: 16,
