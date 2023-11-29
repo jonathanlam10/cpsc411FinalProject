@@ -1,6 +1,6 @@
 // TodayEntriesScreen.tsx
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet, ImageBackground } from 'react-native';
 import { getEntryList } from './NutritionEntryList';
 
 const TodayEntriesScreen = ({ navigation }) => {
@@ -16,6 +16,7 @@ const TodayEntriesScreen = ({ navigation }) => {
   };
 
   return (
+    <ImageBackground style={styles.background} source={require('./assets/icon.jpg')}>
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <View style={styles.container}>
         <Text>Today's Calories: {dailyCalories}</Text>
@@ -35,14 +36,22 @@ const TodayEntriesScreen = ({ navigation }) => {
         <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
     </ScrollView>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  background: {
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: 'white',
+         width: '100%',
+         height: '80%',
+      },
   container: {
     padding: 16,
     flex: 1,
-    backgroundColor: 'white',
+    //backgroundColor: 'white',
   },
   entryContainer: {
     borderWidth: 1,

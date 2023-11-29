@@ -1,6 +1,6 @@
 // NutritionEntryForm.tsx
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, TextInput, Button, StyleSheet, TouchableOpacity, Text, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { addEntryToList } from './NutritionEntryList';
 
@@ -34,6 +34,7 @@ const NutritionEntryForm = ({ route }) => {
   };
 
   return (
+  <ImageBackground style={styles.background} source={require('./assets/icon.jpg')}>
     <View style={styles.container}>
       <TextInput
         style={styles.input}
@@ -61,14 +62,22 @@ const NutritionEntryForm = ({ route }) => {
         <Text style={styles.buttonText}>Back</Text>
       </TouchableOpacity>
     </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  background: {
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: 'white',
+       width: '100%',
+       height: '80%',
+    },
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: 'white',
+    //backgroundColor: 'white',
   },
   input: {
     height: 40,

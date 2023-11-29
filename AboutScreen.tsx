@@ -1,6 +1,6 @@
 // AboutScreen.tsx
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Linking } from 'react-native';
 
@@ -18,6 +18,7 @@ const AboutScreen = () => {
   };
 
   return (
+  <ImageBackground style={styles.background} source={require('./assets/icon.jpg')}>
     <View style={styles.container}>
       <Text style={styles.title}>Stay on Track!</Text>
       <Text style={styles.subtitle}>About: </Text>
@@ -41,25 +42,35 @@ const AboutScreen = () => {
         <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
     </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  background: {
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: 'white',
+       width: '100%',
+       height: '80%',
+    },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-    backgroundColor: 'lightblue',
+    //backgroundColor: 'lightblue',
   },
   title: {
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: 'gray',
   },
   subtitle: {
     fontSize: 16,
     marginBottom: 10,
+    color: 'gray',
   },
   link: {
     fontSize: 16,

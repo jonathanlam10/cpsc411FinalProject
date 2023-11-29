@@ -1,6 +1,6 @@
 // SetGoalScreen.tsx
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, TextInput, Button, StyleSheet, TouchableOpacity, Text, ImageBackground } from 'react-native';
 import BackButton from './BackButton'; // Import the BackButton component
 
 const SetGoalScreen = ({ route, navigation }) => {
@@ -14,6 +14,7 @@ const SetGoalScreen = ({ route, navigation }) => {
   };
 
   return (
+  <ImageBackground style={styles.background} source={require('./assets/icon.jpg')}>
     <View style={styles.container}>
       <TextInput
         style={styles.input}
@@ -29,16 +30,24 @@ const SetGoalScreen = ({ route, navigation }) => {
         <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
     </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  background: {
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: 'white',
+         width: '100%',
+         height: '80%',
+      },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: 'white',
+    //backgroundColor: 'white',
   },
   input: {
     height: 40,

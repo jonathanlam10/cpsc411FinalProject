@@ -1,6 +1,6 @@
 // HomePage.tsx
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { getEntryList } from './NutritionEntryList';
 import Sound from 'react-native-sound';
@@ -84,7 +84,7 @@ const HomePage = ({ navigationRef, goalCalories, setGoalCalories }) => {
   };
 
   return (
-    <View style={styles.container}>
+     <ImageBackground style={styles.background} source={require('./assets/icon.jpg')}>
       <Text style={styles.title}>Your Daily Calories:</Text>
       <Text style={styles.calories}>
         {localDailyCalories} / {goalCalories}
@@ -116,23 +116,33 @@ const HomePage = ({ navigationRef, goalCalories, setGoalCalories }) => {
       <TouchableOpacity style={styles.viewAllEntriesButton} onPress={handleViewAllEntries}>
         <Text style={styles.viewAllEntriesButtonText}>View All Entries</Text>
       </TouchableOpacity>
-    </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'lightblue',
+    backgroundColor: 'white',
+     width: '100%',
+     height: '80%',
   },
+  container: {
+     flex: 1,
+     justifyContent: 'center',
+     alignItems: 'center',
+   },
   title: {
     fontSize: 20,
+    color: 'gray',
     marginBottom: 10,
+    fontWeight: 'bold',
   },
   calories: {
     fontSize: 24,
+    color: 'gray',
     fontWeight: 'bold',
     marginBottom: 20,
   },

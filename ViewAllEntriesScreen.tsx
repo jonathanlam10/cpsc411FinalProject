@@ -1,6 +1,6 @@
 // ViewAllEntriesScreen.tsx
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet, ImageBackground } from 'react-native';
 import { getEntryList } from './NutritionEntryList';
 import { useNavigation } from '@react-navigation/native';
 
@@ -28,6 +28,7 @@ const ViewAllEntriesScreen = () => {
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+    <ImageBackground style={styles.background} source={require('./assets/icon.jpg')}>
       <View style={styles.container}>
         {Object.keys(groupedEntries).map((date) => (
           <View key={date}>
@@ -50,16 +51,24 @@ const ViewAllEntriesScreen = () => {
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
+      </ImageBackground>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+ background: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'white',
+     width: '100%',
+     height: '80%',
+  },
   container: {
     padding: 16,
     flex: 1,
     paddingHorizontal: 20,
-    backgroundColor: 'white',
+
   },
   dateHeading: {
       fontSize: 18,

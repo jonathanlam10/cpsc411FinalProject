@@ -1,6 +1,6 @@
 // SearchScreen.tsx
 import React, { useState } from 'react';
-import { View, TextInput, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { View, TextInput, Text, TouchableOpacity, FlatList, StyleSheet, ImageBackground } from 'react-native';
 import { getEntryList } from './NutritionEntryList';
 
 const SearchScreen = ({ navigation }) => {
@@ -24,6 +24,7 @@ const SearchScreen = ({ navigation }) => {
   );
 
   return (
+  <ImageBackground style={styles.background} source={require('./assets/icon.jpg')}>
     <View style={styles.container}>
       <TextInput
         style={styles.searchInput}
@@ -44,14 +45,22 @@ const SearchScreen = ({ navigation }) => {
         <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
     </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  background: {
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: 'white',
+       width: '100%',
+       height: '80%',
+    },
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: 'white',
+    //backgroundColor: 'white',
   },
   searchInput: {
     height: 40,
