@@ -64,12 +64,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
+    fontFamily: 'pantry',
     fontWeight: 'bold',
     marginBottom: 20,
     color: 'dimgray',
   },
   subtitle: {
     fontSize: 16,
+    fontFamily: 'pantry',
     marginBottom: 10,
     color: 'dimgray',
   },
